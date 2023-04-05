@@ -7,18 +7,19 @@
 const common = {
   client: 'sqlite3',
   migrations: {
-    directory: './migrations',
+    directory: './data/migrations',
   },
   seeds: {
-    directory: './seeds',
+    directory: './data/seeds',
   },
+  useNullAsDefault: true,
 };
 
 module.exports = {
   development: {
     ...common,
     connection: {
-      filename: './dev.sqlite3',
+      filename: './data/dev.sqlite3',
 
       pool: {
         afterCreate: (conn, done) => {
@@ -31,7 +32,7 @@ module.exports = {
   testing: {
     ...common,
     connection: {
-      filename: './test.sqlite3',
+      filename: './data/test.sqlite3',
     },
     pool: {
       afterCreate: (conn, done) => {
