@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "cross-env NODE_ENV=testing jest --watchAll --coverage --runInBand"
   },
   "repository": {
     "type": "git",
