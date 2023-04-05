@@ -2,9 +2,8 @@
  * @param { import("knex").Knex } knex
  * @returns { Promise<void> }
  */
-exports.up = (knex) =>
-  // eslint-disable-next-line implicit-arrow-linebreak
-  knex.schema
+exports.up = function (knex) {
+  return knex.schema
     .createTable('users', (table) => {
       table.increments('id').primary();
       table.string('username').notNullable();
@@ -15,16 +14,13 @@ exports.up = (knex) =>
     .createTable('posts', (table) => {
       table.increments('id').primary();
       table.integer('user_id').unsigned().notNullable();
-      table.foreign('user_id').references('id').inTable('users');
+      table.foreign('user_id').references('users.id');
       table.string('title').notNullable();
       table.text('content').notNullable();
       table.timestamps(true, true);
     });
+};
 
-/**
- * @param { import("knex").Knex } knex
- * @returns { Promise<void> }
- */
-exports.down = (knex) =>
-  // eslint-disable-next-line implicit-arrow-linebreak
-  knex.schema.dropTableIfExists('posts').dropTableIfExists('users');
+exports.down = function (knex) {
+  return knex.schema.dropTableIfExists('posts').dropTableIfExists('users');
+};
