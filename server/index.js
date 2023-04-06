@@ -11,6 +11,10 @@ server.use(helmet());
 server.use(express.json());
 server.use(cors());
 
+server.get('/', (req, res) => {
+  res.status(200).json({ api: 'up' });
+});
+
 server.use('/api/users', usersRouter);
 server.use('/api/posts', postsRouter);
 
